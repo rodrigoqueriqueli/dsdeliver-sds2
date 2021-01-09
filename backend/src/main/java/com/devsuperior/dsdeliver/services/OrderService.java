@@ -66,4 +66,16 @@ public class OrderService {
 		return new OrderDTO(order);
 	}
 	
+	//transactional pois eh uma alteracao no banco de dados
+	@Transactional
+	public OrderDTO setDelivered(Long id){
+		//getOne pra instanciar um objeto monitorado pelo JPA
+		//instancia na memoria um objeto (monitorado pelo JPA) pedido sem tocar no banco de dados
+		Order order = repository.getOne(id);
+		order.setStatus(OrderStatus.DELIVERED);
+		order = repository.save(order);
+		
+		return new OrderDTO(order);
+	}
+	
 }
