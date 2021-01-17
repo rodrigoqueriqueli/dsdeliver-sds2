@@ -100,6 +100,14 @@ public class Order implements Serializable{
 		this.status = status;
 	}
 
+	public Double getTotal() {
+		double sum = 0.0;
+		for (Product p : products) { //cada produto p na minha lista products(nome da colecao)
+			sum += p.getPrice();
+		}
+		return sum;
+	}
+	
 	public Set<Product> getProducts() {
 		return products;
 	}
